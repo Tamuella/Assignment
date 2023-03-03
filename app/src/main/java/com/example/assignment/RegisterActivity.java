@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText etUsername, etPassword, etConfirmPassword, etEmail;
+    EditText etUsername, etPassword, etConfirmPassword, etEmail, etAddress, etPhoneNum;
     TextView tvAlreadyHaveAccount, tvForgotPassword;
     Button btnSignUp;
     DatabaseHandler DB;
@@ -26,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
         etEmail = (EditText) findViewById(R.id.etEmail);
+        etPhoneNum = (EditText) findViewById(R.id.etPhoneNum);
+        etAddress = (EditText) findViewById(R.id.etAddress);
         tvAlreadyHaveAccount = (TextView) findViewById(R.id.tvAlreadyHaveAccount);
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
@@ -37,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 String confirmPassword = etConfirmPassword.getText().toString();
+                String address = etAddress.getText().toString();
+                String phoneNum = etPhoneNum.getText().toString();
                 String email = etEmail.getText().toString();
                 if(username.equals("") || password.equals("") || confirmPassword.equals("")|| email.equals("")){
                     Toast.makeText(RegisterActivity.this, "Please enter!", Toast.LENGTH_LONG ).show();
@@ -47,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
                 if (!DB.checkUsername(username)){
-                    boolean insert = DB.insertUserData(username, password, email);
+                    boolean insert = DB.insertUserData(username, password, email, address, phoneNum);
                     if(insert){
                         Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_LONG).show();
                     }

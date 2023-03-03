@@ -2,13 +2,14 @@ package com.example.assignment;
 
 public class User {
 
-    private String username, password, rePassword, email;
+    private String username, password, email, address, phoneNum;
 
-    public User(String username, String password, String rePassword, String email) {
+    public User(String username, String password, String email, String address, String phoneNum) {
         this.username = username;
         this.password = password;
-        this.rePassword = rePassword;
         this.email = email;
+        this.address = address;
+        this.phoneNum = phoneNum;
     }
 
     public String getUsername() {
@@ -27,19 +28,27 @@ public class User {
         this.password = password;
     }
 
-    public String getRePassword() {
-        return rePassword;
-    }
-
-    public void setRePassword(String rePassword) {
-        this.rePassword = rePassword;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 }

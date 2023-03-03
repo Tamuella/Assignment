@@ -65,15 +65,4 @@
 
     </LinearLayout>
 
-
-    <CheckBox
-        android:id="@+id/tvStatus"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Chọn"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
 </LinearLayout>

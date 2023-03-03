@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     private ArrayList<Product> listProduct;
+    private ArrayList<Integer> listQuantity;
+    ArrayList<Boolean> listCheckedItem = new ArrayList<>();
     DatabaseHandler DB;
     Context context;
 
@@ -27,6 +31,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         private final TextView tvProductID, tvProductName, tvProductQuantity, tvProductPrice;
         private final ImageButton imageButton;
         private final Button btnAddToCart;
+        private final CheckBox tvStatus;
 
         public ViewHolder(View view) {
             super(view);
@@ -38,6 +43,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             tvProductPrice = (TextView) view.findViewById(R.id.tvProductPrice);
             imageButton = (ImageButton) view.findViewById(R.id.imageButton);
             btnAddToCart = (Button) view.findViewById(R.id.btnAddToCart);
+            tvStatus = (CheckBox) view.findViewById(R.id.tvStatus);
         }
     }
 
@@ -47,10 +53,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
      * @param listProduct String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public CartAdapter(Context context, ArrayList<Product> listProduct) {
+    public CartAdapter(Context context, ArrayList<Product> listProduct, ArrayList<Integer> listQuantity) {
         this.listProduct = listProduct;
         this.context = context;
         DB = new DatabaseHandler(context);
+
+        this.listQuantity = listQuantity;
+
+        for (int i = 0; i < listProduct.size(); i++) {
+            this.listCheckedItem.add(false);
+        }
     }
 
     // Create new views (invoked by the layout manager)
@@ -71,9 +83,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         // contents of the view with that element
         viewHolder.tvProductID.setText(listProduct.get(position).getProductID());
         viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
-        viewHolder.tvProductQuantity.setText(listProduct.get(position).getProductQuantity());
+        viewHolder.tvProductQuantity.setText(String.valueOf(listQuantity.get(position)));
         viewHolder.tvProductPrice.setText(listProduct.get(position).getProductPrice());
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
+        viewHolder.tvStatus.setOnCheckedChangeListener((buttonView, isChecked) -> listCheckedItem.set(position, isChecked));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

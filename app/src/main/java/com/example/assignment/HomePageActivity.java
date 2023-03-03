@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home Page");
 
         initImage();
         initData();
@@ -70,6 +72,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
+                intent.putIntegerArrayListExtra("quantity", adapter.listQuantity);
                 startActivity(intent);
             }
         });

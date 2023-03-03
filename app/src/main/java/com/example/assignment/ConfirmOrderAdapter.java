@@ -1,23 +1,21 @@
 package com.example.assignment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class HomePageViewAdapter extends RecyclerView.Adapter<HomePageViewAdapter.ViewHolder> {
+public class ConfirmOrderAdapter extends RecyclerView.Adapter<ConfirmOrderAdapter.ViewHolder> {
 
-    ArrayList<Integer> listQuantity = new ArrayList<>();
     private ArrayList<Product> listProduct;
+    private ArrayList<Integer> listQuantity;
     DatabaseHandler DB;
     Context context;
 
@@ -49,14 +47,12 @@ public class HomePageViewAdapter extends RecyclerView.Adapter<HomePageViewAdapte
      * @param listProduct String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public HomePageViewAdapter(Context context, ArrayList<Product> listProduct) {
+    public ConfirmOrderAdapter(Context context, ArrayList<Product> listProduct, ArrayList<Integer> listQuantity) {
         this.listProduct = listProduct;
         this.context = context;
         DB = new DatabaseHandler(context);
-        for (int i = 0 ; i<listProduct.size(); i++){
-            listQuantity.add(1);
-        }
 
+        this.listQuantity = listQuantity;
     }
 
     // Create new views (invoked by the layout manager)
@@ -64,7 +60,7 @@ public class HomePageViewAdapter extends RecyclerView.Adapter<HomePageViewAdapte
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.home_page_row_item, viewGroup, false);
+                .inflate(R.layout.confirm_order_row_item, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -77,28 +73,9 @@ public class HomePageViewAdapter extends RecyclerView.Adapter<HomePageViewAdapte
         // contents of the view with that element
         viewHolder.tvProductID.setText(listProduct.get(position).getProductID());
         viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
-        viewHolder.tvProductQuantity.setText(listProduct.get(position).getProductQuantity());
+        viewHolder.tvProductQuantity.setText(String.valueOf(listQuantity.get(position)));
         viewHolder.tvProductPrice.setText(listProduct.get(position).getProductPrice());
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
-        viewHolder.btnAddToCart.setOnClickListener(v -> {
-
-            boolean isExist = DB.checkCart(listProduct.get(position).getProductID());
-            if(isExist){
-                int quantity = listQuantity.get(position) + 1;
-                listQuantity.set(position,quantity);
-                Toast.makeText(context, "Add to cart successfully", Toast.LENGTH_LONG).show();
-            }else{
-                boolean insert = DB.insertCartData
-                        (listProduct.get(position).getProductID(),
-                                listProduct.get(position).getProductName(),
-                                listProduct.get(position).getProductPrice(),
-                                listProduct.get(position).getImageDrawable());
-                if(insert){
-                    Toast.makeText(context, "Add to cart successfully", Toast.LENGTH_LONG).show();
-
-                }
-            }
-        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

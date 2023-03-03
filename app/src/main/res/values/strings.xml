@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Assignment</string>
+    <string name="preference_username">preference_username</string>
+    <string name="preference_root">preference_root</string>
 </resources>

@@ -18,9 +18,9 @@
             android:layout_gravity="center">
 
             <LinearLayout
-                android:id="@+id/llFindStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/llMyOrder"
+                android:layout_width="113dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bar"
                 android:orientation="vertical">
@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Tìm nhà thuốc"
+                    android:text="Đơn Mua"
                     android:textStyle="bold" />
 
 
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Đơn của tôi"
+                    android:text="Giỏ hàng"
                     android:textStyle="bold" />
 
 
@@ -89,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="TÀI KHOẢN"
+                    android:text="Tài khoản"
                     android:textStyle="bold" />
             </LinearLayout>
 

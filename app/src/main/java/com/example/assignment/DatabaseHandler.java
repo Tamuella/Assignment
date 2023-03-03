@@ -22,7 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users (username TEXT primary key , password TEXT, email TEXT)");
+        MyDB.execSQL("create Table users (username TEXT primary key , password TEXT, email TEXT, address TEXT, phoneNum TEXT)");
         MyDB.execSQL("create table products (ProductID TEXT primary key, ProductName TEXT, ProductQuantity TEXT, ProductPrice TEXT, ImageDrawable INTERGER)");
         MyDB.execSQL("create table cart (ProductID TEXT primary key, ProductName TEXT, ProductQuantity TEXT, ProductPrice TEXT, ImageDrawable INTERGER)");
     }
@@ -97,15 +97,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return productModalArrayList;
     }
 
-    public boolean insertUserData(String username, String password, String email){
+    public boolean insertUserData(String username, String password, String email, String Address, String phoneNum ){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("password", password);
         contentValues.put("email", email);
+        contentValues.put("Address", Address);
+        contentValues.put("phoneNum", phoneNum);
         long result = MyDB.insert("users", null, contentValues );
                 if(result==1) return false;
                 else return true;
+    }
+
+    public User getUser (String username){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT * from users where username = ? ", new String[]{username});
+        if (cursor.getCount() > 0 ) {
+            cursor.moveToFirst();
+            return new User(cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+            );
+        }
+
+        return null;
     }
 
     public boolean checkUsername (String username){
@@ -156,12 +174,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean insertCartData(String productID, String productName, String productQuantity, String productPrice, int ImageDrawable){
+    public boolean insertCartData(String productID, String productName, String productPrice, int ImageDrawable){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("productID", productID);
         contentValues.put("productName", productName);
-        contentValues.put("productQuantity", productQuantity);
         contentValues.put("productPrice", productPrice);
         contentValues.put("ImageDrawable", ImageDrawable);
         long result = MyDB.insert("cart", null, contentValues );
@@ -169,11 +186,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         else return true;
     }
 
-    public void updateProductDB(String productID, String productQuantity) {
+    public boolean deleteCartData(String productID){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        long result = MyDB.delete("cart","productID=?",new String[]{productID});
+        if(result==1) return false;
+        else return true;
+    }
+
+    public int getProductQuantity(String productID) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT * from products where ProductID = ? ", new String[]{productID});
+        if (cursor.getCount() > 0 ) {
+            cursor.moveToFirst();
+            return Integer.parseInt(cursor.getString(2));
+        }
+
+        return -1;
+    }
+
+    public void updateProductQuantity(String productID, String productQuantity) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("productID", productQuantity);
+        values.put("productQuantity", productQuantity);
         MyDB.update(TABLE_PRODUCT, values, "productID=?", new String[]{productID});
         MyDB.close();
+    }
+
+    public boolean checkCart (String productID){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT * from cart where productID = ?", new String[]{productID});
+        if (cursor.getCount() > 0 )
+            return true;
+        else
+            return false;
     }
 }
