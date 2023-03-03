@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends ShowAdsActivity {
 
     ArrayList<Product> listProduct;
     ArrayList<Integer> listImage = new ArrayList<Integer>();
