@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class ConfirmOrderActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     ArrayList<Integer> listQuantity;
     DatabaseHandler DB;
     User user;
+    double shipFees = 20000.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,24 +59,21 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         rvConfirmOrder.setAdapter(adapter);
 
         Button btnBuy = (Button) findViewById(R.id.btnBuy);
-        btnBuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                for (int i = 0; i < listProduct.size(); i++) {
-                    Product product = listProduct.get(i);
+        btnBuy.setOnClickListener(v -> {
+            for (int i = 0; i < listProduct.size(); i++) {
+                Product product = listProduct.get(i);
 
-                    int currentProductQuantity = DB.getProductQuantity(product.getProductID());
-                    int buyQuantity = listQuantity.get(i);
-                    String finalQuantity = String.valueOf(currentProductQuantity - buyQuantity);
+                int currentProductQuantity = DB.getProductQuantity(product.getProductID());
+                int buyQuantity = listQuantity.get(i);
+                String finalQuantity = String.valueOf(currentProductQuantity - buyQuantity);
 
-                    DB.updateProductQuantity(product.getProductID(), finalQuantity);
-                    DB.deleteCartData(product.getProductID());
-                }
-
-                Intent intent = new Intent(ConfirmOrderActivity.this, HomePageActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                DB.updateProductQuantity(product.getProductID(), finalQuantity);
+                DB.deleteCartData(product.getProductID());
             }
+
+            Intent intent = new Intent(ConfirmOrderActivity.this, HomePageActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
 
 
@@ -82,12 +81,26 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         TextView tvEmail = (TextView) findViewById(R.id.tvEmail);
         TextView tvAdress = (TextView) findViewById(R.id.tvAdress);
         TextView tvPhoneNum = (TextView) findViewById(R.id.tvPhoneNum);
+        TextView tvFees = (TextView) findViewById(R.id.tvFees);
+        TextView tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
 
         if (user != null) {
-            tvUserName.setText(user.getUsername());
-            tvEmail.setText(user.getEmail());
-            tvAdress.setText(user.getAddress());
-            tvPhoneNum.setText(user.getPhoneNum());
+            tvUserName.setText("Username: " + user.getUsername());
+            tvEmail.setText("Email: " + user.getEmail());
+            tvAdress.setText("Address: " + user.getAddress());
+            tvPhoneNum.setText("Phone number: " + user.getPhoneNum());
         }
+
+        double totalPrice = 0.0;
+        for (int i = 0; i < listProduct.size(); i++) {
+            double price = Double.parseDouble(listProduct.get(i).getProductPrice());
+            int quantity = listQuantity.get(i);
+            totalPrice += (price * quantity);
+        }
+
+        tvFees.setText("Ship Fees: " + shipFees + "đ");
+
+        totalPrice += shipFees;
+        tvTotalPrice.setText("Total Price: " + totalPrice + "đ");
     }
 }

@@ -81,10 +81,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.tvProductID.setText(listProduct.get(position).getProductID());
-        viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
-        viewHolder.tvProductQuantity.setText(String.valueOf(listQuantity.get(position)));
-        viewHolder.tvProductPrice.setText(listProduct.get(position).getProductPrice());
+        viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
+        viewHolder.tvProductName.setText("Name: " + listProduct.get(position).getProductName());
+        viewHolder.tvProductQuantity.setText("Quantity: " + listQuantity.get(position));
+        viewHolder.tvProductPrice.setText("Price: " + listProduct.get(position).getProductPrice() + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
         viewHolder.tvStatus.setOnCheckedChangeListener((buttonView, isChecked) -> listCheckedItem.set(position, isChecked));
     }
