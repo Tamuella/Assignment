@@ -1,139 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".HomePageActivity">
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/llMyOrder"
-                android:layout_width="113dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bar"
-                android:orientation="vertical">
+                    android:id="@+id/llMyOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bar"
+                    android:orientation="vertical">
+                <!--                    android:id="@+id/llFindStore"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    android:background="@drawable/bar"-->
+                <!--                    android:orientation="vertical"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_marginLeft="10dp"-->
+                <!--                    android:layout_marginRight="10dp">-->
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:padding="8dp" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/search" />
 
                 <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Đơn Mua"
-                    android:textStyle="bold" />
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Đơn Mua"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold" />
+                <!--=======-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:text="Tìm nhà thuốc"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        android:layout_marginBottom="10dp" />-->
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llMyCart"
-                android:layout_width="113dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bar"
-                android:orientation="vertical">
+                    android:id="@+id/llMyCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bar"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:padding="8dp" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/cart" />
 
                 <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Giỏ hàng"
-                    android:textStyle="bold" />
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Giỏ hàng"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold" />
+                <!--=======-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:text="Đơn của tôi"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        android:layout_marginBottom="10dp" />-->
+                <!--&gt;>>>>>> Stashed changes-->
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llMyAccount"
-                android:layout_width="113dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bar"
-                android:orientation="vertical">
+                    android:id="@+id/llMyAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bar"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:padding="8dp" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/person" />
 
                 <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Tài khoản"
-                    android:textStyle="bold" />
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Tài khoản"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold" />
+                <!--=======-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:text="Tài khoản"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        android:layout_marginBottom="10dp" />-->
+                <!--&gt;>>>>>> Stashed changes-->
             </LinearLayout>
 
         </LinearLayout>
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="8dp"
-            android:text="Thuốc"
-            android:textSize="25sp"
-            android:textColor="@color/colorText"
-            android:fontFamily="@font/montserrat_bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thuốc"
+                android:textSize="25sp"
+                android:textColor="@color/colorText"
+                android:fontFamily="@font/montserrat_bold"
+                android:id="@+id/textView6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                android:layout_marginTop="20dp" />
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvThuoc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+                android:id="@+id/rvThuoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:flow_horizontalGap="20dp"
+                app:flow_verticalGap="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="8dp"
-            android:text="Thuốc chức năng"
-            android:textSize="25sp"
-            android:textColor="@color/colorText"
-            android:fontFamily="@font/montserrat_bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thuốc chức năng"
+                android:textSize="25sp"
+                android:textColor="@color/colorText"
+                android:fontFamily="@font/montserrat_bold"
+                android:id="@+id/textView7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvThuoc"
+                android:layout_marginTop="30dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvThuocChucNang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                android:id="@+id/rvThuocChucNang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
+        <Button
+                android:text="Import"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/import_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvThuocChucNang" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

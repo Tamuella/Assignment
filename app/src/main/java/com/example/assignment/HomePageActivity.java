@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -75,6 +76,12 @@ public class HomePageActivity extends ShowAdsActivity {
                 intent.putIntegerArrayListExtra("quantity", adapter.listQuantity);
                 startActivity(intent);
             }
+        });
+
+        Button importButton = findViewById(R.id.import_button);
+        importButton.setOnClickListener(l -> {
+            Intent importIntent = new Intent(HomePageActivity.this, ImportProductActivity.class);
+            startActivity(importIntent);
         });
     }
 
