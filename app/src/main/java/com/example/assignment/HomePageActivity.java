@@ -57,6 +57,7 @@ public class HomePageActivity extends ShowAdsActivity {
     private void initView() {
         HomePageViewAdapter adapter = new HomePageViewAdapter(this, listProduct);
         LinearLayout llMyCart = (LinearLayout) findViewById(R.id.llMyCart);
+        LinearLayout llMyOrder = (LinearLayout) findViewById(R.id.llMyOrder);
 
         RecyclerView rvThuoc = (RecyclerView) findViewById(R.id.rvThuoc);
         LinearLayoutManager lmThuoc = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -74,6 +75,14 @@ public class HomePageActivity extends ShowAdsActivity {
             public void onClick(View v){
                 Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
                 intent.putIntegerArrayListExtra("quantity", adapter.listQuantity);
+                startActivity(intent);
+            }
+        });
+
+        llMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(HomePageActivity.this, OrderHistoryActivity.class);
                 startActivity(intent);
             }
         });

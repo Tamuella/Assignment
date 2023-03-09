@@ -67,9 +67,6 @@ DatabaseHandler DB;
             }
         });
 
-        Intent homeIntent = new Intent(MainActivity.this, HomePageActivity.class);
-        startActivity(homeIntent);
-
     }
 
     private void storeUsernameToSharePref(String username) {

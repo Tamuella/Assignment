@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String DBNAME =" Login2.db";
@@ -14,6 +15,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_USER = "users";
     private static final String TABLE_PRODUCT = "products";
     private static final String TABLE_CART = "cart";
+    private static final String TABLE_ORDER_HISTORY = "orderHistory";
 
     public DatabaseHandler(Context context) {
         super(context, "Login.db", null, 1);
@@ -25,14 +27,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         MyDB.execSQL("create Table users (username TEXT primary key , password TEXT, email TEXT, address TEXT, phoneNum TEXT)");
         MyDB.execSQL("create table products (ProductID TEXT primary key, ProductName TEXT, ProductQuantity TEXT, ProductPrice TEXT, ImageDrawable INTERGER)");
         MyDB.execSQL("create table cart (ProductID TEXT primary key, ProductName TEXT, ProductQuantity TEXT, ProductPrice TEXT, ImageDrawable INTERGER)");
+        MyDB.execSQL("create table orderHistory (OrderId TEXT primary key, ProductName TEXT, ProductQuantity TEXT, ProductPrice TEXT, ImageDrawable INTERGER, username TEXT)");
     }
 
 
     @Override
-    public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase MyDB, int oldVersion, int newVersion) {
         MyDB.execSQL("drop TABLE if exists users");
         MyDB.execSQL("drop TABLE if exists products");
         MyDB.execSQL("drop TABLE if exists cart");
+        MyDB.execSQL("drop TABLE if exists orderHistory");
     }
 
     // we have created a new method for reading all the products.
@@ -94,6 +98,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // at last closing our cursor
         // and returning our array list.
         cursorCart.close();
+        return productModalArrayList;
+    }
+
+    // we have created a new method for reading all the orderHistory.
+    public ArrayList<Product> readOrders(String username) {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_ORDER_HISTORY, null);
+
+        // on below line we are creating a new array list.
+        ArrayList<Product> productModalArrayList = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (cursor.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                productModalArrayList.add(new Product(cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getInt(4)
+                        ));
+            } while (cursor.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursor.close();
         return productModalArrayList;
     }
 
@@ -170,6 +205,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValues.put("productPrice", productPrice);
         contentValues.put("ImageDrawable", ImageDrawable);
         long result = MyDB.insert("products", null, contentValues );
+        if(result==1) return false;
+        else return true;
+    }
+
+    public boolean insertOrderHistoryData(Product product, int productQuantity, String username){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("orderID", UUID.randomUUID().toString());
+        contentValues.put("productName", product.getProductName());
+        contentValues.put("productQuantity", productQuantity);
+        contentValues.put("productPrice", product.getProductPrice());
+        contentValues.put("ImageDrawable", product.getImageDrawable());
+        contentValues.put("username", username);
+        long result = MyDB.insert(TABLE_ORDER_HISTORY, null, contentValues );
         if(result==1) return false;
         else return true;
     }

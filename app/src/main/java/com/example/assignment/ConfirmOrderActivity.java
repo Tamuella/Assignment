@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_order);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Confirm Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initData();
         initView();
@@ -69,6 +71,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
                 DB.updateProductQuantity(product.getProductID(), finalQuantity);
                 DB.deleteCartData(product.getProductID());
+                DB.insertOrderHistoryData(product, buyQuantity, user.getUsername());
             }
 
             Intent intent = new Intent(ConfirmOrderActivity.this, HomePageActivity.class);
@@ -102,5 +105,16 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
         totalPrice += shipFees;
         tvTotalPrice.setText("Total Price: " + totalPrice + "đ");
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed(); // close this activity and return to preview activity (if there is any)
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
