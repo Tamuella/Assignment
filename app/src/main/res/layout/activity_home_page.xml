@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="20dp">
 
-        <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -21,7 +26,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+                <LinearLayout
                     android:id="@+id/llMyOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -30,17 +35,17 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/bar"
                     android:orientation="vertical">
-                <!--                    android:id="@+id/llFindStore"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="10dp"-->
-                <!--                    android:background="@drawable/bar"-->
-                <!--                    android:orientation="vertical"-->
-                <!--                    android:layout_weight="1"-->
-                <!--                    android:layout_marginLeft="10dp"-->
-                <!--                    android:layout_marginRight="10dp">-->
+                    <!--                    android:id="@+id/llFindStore"-->
+                    <!--                    android:layout_width="wrap_content"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_marginTop="10dp"-->
+                    <!--                    android:background="@drawable/bar"-->
+                    <!--                    android:orientation="vertical"-->
+                    <!--                    android:layout_weight="1"-->
+                    <!--                    android:layout_marginLeft="10dp"-->
+                    <!--                    android:layout_marginRight="10dp">-->
 
-                <ImageView
+                    <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -48,7 +53,7 @@
                         android:padding="5dp"
                         app:srcCompat="@drawable/search" />
 
-                <TextView
+                    <TextView
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -56,19 +61,19 @@
                         android:text="Đơn Mua"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold" />
-                <!--=======-->
-                <!--                        android:textColor="@color/black"-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:gravity="center"-->
-                <!--                        android:text="Tìm nhà thuốc"-->
-                <!--                        android:textStyle="bold"-->
-                <!--                        android:layout_marginBottom="10dp" />-->
+                    <!--=======-->
+                    <!--                        android:textColor="@color/black"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:text="Tìm nhà thuốc"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        android:layout_marginBottom="10dp" />-->
 
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
+                <LinearLayout
                     android:id="@+id/llMyCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +83,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp">
 
-                <ImageView
+                    <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -86,7 +91,7 @@
                         android:padding="5dp"
                         app:srcCompat="@drawable/cart" />
 
-                <TextView
+                    <TextView
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -94,21 +99,21 @@
                         android:text="Giỏ hàng"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold" />
-                <!--=======-->
-                <!--                        android:textColor="@color/black"-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:gravity="center"-->
-                <!--                        android:text="Đơn của tôi"-->
-                <!--                        android:textStyle="bold"-->
-                <!--                        android:layout_marginBottom="10dp" />-->
-                <!--&gt;>>>>>> Stashed changes-->
+                    <!--=======-->
+                    <!--                        android:textColor="@color/black"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:text="Đơn của tôi"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        android:layout_marginBottom="10dp" />-->
+                    <!--&gt;>>>>>> Stashed changes-->
 
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                    android:id="@+id/llMyAccount"
+                <LinearLayout
+                    android:id="@+id/llMyMaps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bar"
@@ -117,37 +122,37 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp">
 
-                <ImageView
+                    <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="8dp"
                         android:padding="5dp"
-                        app:srcCompat="@drawable/person" />
+                        app:srcCompat="@drawable/baseline_map_24" />
 
-                <TextView
+                    <TextView
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Tài khoản"
+                        android:text="Bản đồ"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold" />
-                <!--=======-->
-                <!--                        android:textColor="@color/black"-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:gravity="center"-->
-                <!--                        android:text="Tài khoản"-->
-                <!--                        android:textStyle="bold"-->
-                <!--                        android:layout_marginBottom="10dp" />-->
-                <!--&gt;>>>>>> Stashed changes-->
+                    <!--=======-->
+                    <!--                        android:textColor="@color/black"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:text="Tài khoản"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        android:layout_marginBottom="10dp" />-->
+                    <!--&gt;>>>>>> Stashed changes-->
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
 
-
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thuốc"
@@ -160,7 +165,7 @@
                 android:layout_marginTop="20dp" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvThuoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -171,7 +176,7 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thuốc chức năng"
@@ -183,7 +188,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvThuoc"
                 android:layout_marginTop="30dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvThuocChucNang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,7 +197,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
+            <Button
                 android:text="Import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -201,5 +206,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rvThuocChucNang" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_margin="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/purple_500"
+        android:src="@android:drawable/ic_dialog_email"
+        android:id="@+id/fabMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

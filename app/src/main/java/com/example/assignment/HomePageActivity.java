@@ -5,10 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -58,6 +61,7 @@ public class HomePageActivity extends ShowAdsActivity {
         HomePageViewAdapter adapter = new HomePageViewAdapter(this, listProduct);
         LinearLayout llMyCart = (LinearLayout) findViewById(R.id.llMyCart);
         LinearLayout llMyOrder = (LinearLayout) findViewById(R.id.llMyOrder);
+        LinearLayout llMyMaps = (LinearLayout) findViewById(R.id.llMyMaps);
 
         RecyclerView rvThuoc = (RecyclerView) findViewById(R.id.rvThuoc);
         LinearLayoutManager lmThuoc = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -87,10 +91,28 @@ public class HomePageActivity extends ShowAdsActivity {
             }
         });
 
+        llMyMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Creates an Intent that will load a map of FPT University
+//                Uri gmmIntentUri = Uri.parse("geo:10.841285586243103, 106.81054820008802?z=17");
+                Uri gmmIntentUri = Uri.parse("https://goo.gl/maps/EZU1SiQrB7rTRVHFA");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
         Button importButton = findViewById(R.id.import_button);
         importButton.setOnClickListener(l -> {
             Intent importIntent = new Intent(HomePageActivity.this, ImportProductActivity.class);
             startActivity(importIntent);
+        });
+
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(l -> {
+            String number = "0799832535";
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", number, null)));
         });
     }
 
