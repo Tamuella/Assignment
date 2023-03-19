@@ -74,12 +74,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        double price = Double.parseDouble(listProduct.get(position).getProductPrice());
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
         viewHolder.tvProductName.setText("Name: " + listProduct.get(position).getProductName());
-        viewHolder.tvProductPrice.setText("Price: " + listProduct.get(position).getProductPrice() + "đ");
+        viewHolder.tvProductPrice.setText("Price: " + (price * listQuantity.get(position)) + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
 
         viewHolder.tvQuantity.setText(String.valueOf(listQuantity.get(position)));

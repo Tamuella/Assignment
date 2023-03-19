@@ -63,7 +63,7 @@ DatabaseHandler DB;
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, ImportProductActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
                 startActivity(myIntent);
             }
         });
