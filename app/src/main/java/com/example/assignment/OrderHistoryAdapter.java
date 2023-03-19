@@ -62,13 +62,13 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        double price = Double.parseDouble(listProduct.get(position).getProductPrice());
+        int quantity = Integer.parseInt(listProduct.get(position).getProductQuantity());
+        double totalPrice = (price * quantity) + 15000; // ship fees
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
-        viewHolder.tvProductName.setText("Name: " + listProduct.get(position).getProductName());
+        viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
         viewHolder.tvProductQuantity.setText("Quantity: " + listProduct.get(position).getProductQuantity());
-        viewHolder.tvProductPrice.setText("Price: " + listProduct.get(position).getProductPrice() + "đ");
+        viewHolder.tvProductPrice.setText(totalPrice + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
     }
 

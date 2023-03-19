@@ -23,7 +23,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     ArrayList<Integer> listQuantity;
     DatabaseHandler DB;
     User user;
-    double shipFees = 20000.0;
+    double shipFees = 15000.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
             int quantity = listQuantity.get(i);
             totalPrice += (price * quantity);
         }
+
+        shipFees = shipFees * listProduct.size();
 
         tvFees.setText("Ship Fees: " + shipFees + "đ");
 

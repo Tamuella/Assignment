@@ -68,13 +68,15 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter<ConfirmOrderAdapte
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        double price = Double.parseDouble(listProduct.get(position).getProductPrice());
+        double totalPrice = (price * listQuantity.get(position));
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
-        viewHolder.tvProductName.setText("Name: " + listProduct.get(position).getProductName());
+        viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
         viewHolder.tvProductQuantity.setText("Quantity: " + listQuantity.get(position));
-        viewHolder.tvProductPrice.setText("Price: " + listProduct.get(position).getProductPrice() + "đ");
+        viewHolder.tvProductPrice.setText("Price: " + totalPrice + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
     }
 

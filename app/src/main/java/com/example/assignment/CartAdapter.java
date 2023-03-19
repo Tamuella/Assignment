@@ -75,10 +75,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         double price = Double.parseDouble(listProduct.get(position).getProductPrice());
+        double totalPrice = (price * listQuantity.get(position));
 
         viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
-        viewHolder.tvProductName.setText("Name: " + listProduct.get(position).getProductName());
-        viewHolder.tvProductPrice.setText("Price: " + (price * listQuantity.get(position)) + "đ");
+        viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
+        viewHolder.tvProductPrice.setText("Price: " + totalPrice + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
 
         viewHolder.tvQuantity.setText(String.valueOf(listQuantity.get(position)));
@@ -91,11 +92,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         viewHolder.ivMinus.setOnClickListener(v -> {
             int quantity = listQuantity.get(position);
             if (quantity == 1) {
-                return;
+                DB.deleteCartData(listProduct.get(position).getProductID());
+                listProduct.remove(position);
+                listQuantity.remove(position);
+                notifyDataSetChanged();
+            } else {
+                quantity -= 1;
+                listQuantity.set(position, quantity);
+                notifyItemChanged(position);
             }
-            quantity -= 1;
-            listQuantity.set(position, quantity);
-            notifyItemChanged(position);
         });
     }
 
