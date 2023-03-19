@@ -55,9 +55,11 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!DB.checkUsername(username)){
                     boolean insert = DB.insertUserData(username, password, email, address, phoneNum);
                     if(insert){
+                        finish();
                         Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    finish();
                     Toast.makeText(RegisterActivity.this, "Username already exist!!", Toast.LENGTH_LONG ).show();
                 }
             }

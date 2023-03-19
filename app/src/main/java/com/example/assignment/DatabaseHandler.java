@@ -197,6 +197,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public boolean insertProductData(String productID, String productName, String productQuantity, String productPrice, int ImageDrawable){
+        if (checkCart(productID)) return false;
+
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("productID", productID);

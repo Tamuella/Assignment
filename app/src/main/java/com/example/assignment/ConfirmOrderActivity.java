@@ -59,6 +59,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         LinearLayoutManager lmOrder = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvConfirmOrder.setLayoutManager(lmOrder);
         rvConfirmOrder.setAdapter(adapter);
+        rvConfirmOrder.setNestedScrollingEnabled(false);
 
         Button btnBuy = (Button) findViewById(R.id.btnBuy);
         btnBuy.setOnClickListener(v -> {
@@ -74,8 +75,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                 DB.insertOrderHistoryData(product, buyQuantity, user.getUsername());
             }
 
-            Intent intent = new Intent(ConfirmOrderActivity.this, HomePageActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            Intent intent = new Intent(ConfirmOrderActivity.this, OrderSuccessActivity.class);
             startActivity(intent);
         });
 

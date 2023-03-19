@@ -25,6 +25,7 @@ DatabaseHandler DB;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Login");
+        importDatabase();
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -67,6 +68,15 @@ DatabaseHandler DB;
             }
         });
 
+    }
+
+    private void importDatabase() {DB = new DatabaseHandler(this);
+        DatabaseHandler DB = new DatabaseHandler(this);
+        DB.insertProductData("PD1", "Thuốc cảm", "100", "5000", 0);
+        DB.insertProductData("PD2", "Thuốc ho", "200", "7000", 1);
+        DB.insertProductData("PD3", "Thuốc sốt", "300", "10000", 2);
+        DB.insertProductData("PD4", "Thuốc dạ dày", "400", "20000", 3);
+        DB.insertProductData("PD5", "Thuốc kháng sinh", "500", "15000", 4);
     }
 
     private void storeUsernameToSharePref(String username) {

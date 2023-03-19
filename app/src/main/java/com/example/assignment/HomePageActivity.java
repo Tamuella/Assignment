@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -33,6 +34,14 @@ public class HomePageActivity extends ShowAdsActivity {
         initImage();
         initData();
         initView();
+        initNavigate();
+    }
+
+    private void initNavigate() {
+        if (getIntent() != null && getIntent().getStringExtra("navigation") != null) {
+            Intent intent = new Intent(HomePageActivity.this, OrderHistoryActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void initData() {

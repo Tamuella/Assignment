@@ -46,28 +46,14 @@ public class CartActivity extends AppCompatActivity {
         rvCart.setLayoutManager(lmCart);
         rvCart.setAdapter(adapter);
 
-        btnBuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                ArrayList<Product> listProductChecked = new ArrayList<>();
-                for (int i = 0; i < listProduct.size(); i++) {
-                    if (adapter.listCheckedItem.get(i)) {
-                        listProductChecked.add(listProduct.get(i));
-                    }
-                }
+        btnBuy.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("products", listProduct);
+            bundle.putIntegerArrayList("quantity", listQuantity);
 
-                if (listProductChecked.size() > 0) {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("products", listProductChecked);
-                    bundle.putIntegerArrayList("quantity", listQuantity);
-
-                    Intent intent = new Intent(CartActivity.this, ConfirmOrderActivity.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(CartActivity.this, "Not choose Product yet", Toast.LENGTH_SHORT).show();
-                }
-            }
+            Intent intent = new Intent(CartActivity.this, ConfirmOrderActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
     }
 

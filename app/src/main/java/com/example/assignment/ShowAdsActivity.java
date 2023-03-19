@@ -15,7 +15,7 @@ public abstract class ShowAdsActivity extends AppCompatActivity {
     Dialog dialog;
     Handler handler = new Handler();
     Runnable runnable;
-    final int delay = 10000;
+    final int delay = 50000;
 
     @Override
     protected void onResume() {

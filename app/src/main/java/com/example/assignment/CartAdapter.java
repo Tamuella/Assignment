@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     private ArrayList<Product> listProduct;
     private ArrayList<Integer> listQuantity;
-    ArrayList<Boolean> listCheckedItem = new ArrayList<>();
     DatabaseHandler DB;
     Context context;
 
@@ -28,10 +28,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
      * (custom ViewHolder).
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tvProductID, tvProductName, tvProductQuantity, tvProductPrice;
+        private final TextView tvProductID, tvProductName, tvQuantity, tvProductPrice;
         private final ImageButton imageButton;
-        private final Button btnAddToCart;
-        private final CheckBox tvStatus;
+        private final ImageView ivPlus, ivMinus;
 
         public ViewHolder(View view) {
             super(view);
@@ -39,11 +38,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
             tvProductID = (TextView) view.findViewById(R.id.tvProductID);
             tvProductName = (TextView) view.findViewById(R.id.tvProductName);
-            tvProductQuantity = (TextView) view.findViewById(R.id.tvProductQuantity);
+            tvQuantity = (TextView) view.findViewById(R.id.tvQuantity);
             tvProductPrice = (TextView) view.findViewById(R.id.tvProductPrice);
             imageButton = (ImageButton) view.findViewById(R.id.imageButton);
-            btnAddToCart = (Button) view.findViewById(R.id.btnAddToCart);
-            tvStatus = (CheckBox) view.findViewById(R.id.tvStatus);
+            ivPlus = view.findViewById(R.id.ivPlus);
+            ivMinus = view.findViewById(R.id.ivMinus);
+
         }
     }
 
@@ -59,10 +59,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         DB = new DatabaseHandler(context);
 
         this.listQuantity = listQuantity;
-
-        for (int i = 0; i < listProduct.size(); i++) {
-            this.listCheckedItem.add(false);
-        }
     }
 
     // Create new views (invoked by the layout manager)
@@ -83,10 +79,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         // contents of the view with that element
         viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
         viewHolder.tvProductName.setText("Name: " + listProduct.get(position).getProductName());
-        viewHolder.tvProductQuantity.setText("Quantity: " + listQuantity.get(position));
         viewHolder.tvProductPrice.setText("Price: " + listProduct.get(position).getProductPrice() + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
-        viewHolder.tvStatus.setOnCheckedChangeListener((buttonView, isChecked) -> listCheckedItem.set(position, isChecked));
+
+        viewHolder.tvQuantity.setText(String.valueOf(listQuantity.get(position)));
+        viewHolder.ivPlus.setOnClickListener(v -> {
+            int quantity = listQuantity.get(position);
+            quantity += 1;
+            listQuantity.set(position, quantity);
+            notifyItemChanged(position);
+        });
+        viewHolder.ivMinus.setOnClickListener(v -> {
+            int quantity = listQuantity.get(position);
+            if (quantity == 1) {
+                return;
+            }
+            quantity -= 1;
+            listQuantity.set(position, quantity);
+            notifyItemChanged(position);
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
