@@ -69,14 +69,14 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter<ConfirmOrderAdapte
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         double price = Double.parseDouble(listProduct.get(position).getProductPrice());
-        double totalPrice = (price * listQuantity.get(position));
+        double totalPrice = (price * listQuantity.get(position)) + 15000; // ship fee
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.tvProductID.setText("ID: " + listProduct.get(position).getProductID());
         viewHolder.tvProductName.setText(listProduct.get(position).getProductName());
         viewHolder.tvProductQuantity.setText("Quantity: " + listQuantity.get(position));
-        viewHolder.tvProductPrice.setText("Price: " + totalPrice + "đ");
+        viewHolder.tvProductPrice.setText("Total Price: " + totalPrice + "đ");
         viewHolder.imageButton.setImageResource(listProduct.get(position).getImageDrawable());
     }
 
