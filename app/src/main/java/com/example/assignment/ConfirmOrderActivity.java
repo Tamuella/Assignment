@@ -84,6 +84,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         TextView tvEmail = (TextView) findViewById(R.id.tvEmail);
         TextView tvAdress = (TextView) findViewById(R.id.tvAdress);
         TextView tvPhoneNum = (TextView) findViewById(R.id.tvPhoneNum);
+        TextView tvFees = (TextView) findViewById(R.id.tvFees);
         TextView tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
 
         if (user != null) {
@@ -101,6 +102,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         }
 
         shipFees = shipFees * listProduct.size();
+
+        tvFees.setText("Ship Fees: " + shipFees + "đ");
 
         totalPrice += shipFees;
         tvTotalPrice.setText("Total Price: " + totalPrice + "đ");
