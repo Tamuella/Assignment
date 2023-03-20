@@ -50,10 +50,13 @@ public class CartActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putSerializable("products", listProduct);
             bundle.putIntegerArrayList("quantity", listQuantity);
-
-            Intent intent = new Intent(CartActivity.this, ConfirmOrderActivity.class);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            if (listProduct.size() == 0){
+                Toast.makeText(CartActivity.this, "Cart Empty!", Toast.LENGTH_LONG ).show();
+            } else {
+                Intent intent = new Intent(CartActivity.this, ConfirmOrderActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
         });
     }
 
