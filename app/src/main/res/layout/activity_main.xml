@@ -30,7 +30,6 @@
         android:text="Buying is a profound pleasure"
         android:textSize="32px"
         android:textColor="@color/colorText"
-        android:fontFamily="@font/montserrat_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

@@ -57,7 +57,7 @@ public class ImportProductActivity extends AppCompatActivity {
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(ImportProductActivity.this, MainActivity.class);
+                Intent myIntent = new Intent(ImportProductActivity.this, HomePageActivity.class);
                 startActivity(myIntent);
             }
         });
